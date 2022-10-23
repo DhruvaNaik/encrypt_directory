@@ -8,13 +8,14 @@ import time
 #C:\Users\dhruv\OneDrive\Desktop\encryption_testing
 
 #create a password
-length = 16
-chars = string.ascii_lowercase
+def password(length):
 
-res = ''.join(random.choice(chars) for i in range(0, length))
+  chars = string.ascii_lowercase
 
-#Store password in txt file
-with open("password.txt", 'w') as f:
+  res = ''.join(random.choice(chars) for i in range(0, length))
+
+  #Store password in txt file
+  with open("password.txt", 'w') as f:
     f.write(res + "<------- Store this password somewhere safe. This file will delete in 1 minute") 
     time.sleep(60)
     os.remove(f)
@@ -22,7 +23,7 @@ with open("password.txt", 'w') as f:
 
 def encrypt(file):
     print('-' * 80)
-    password = "12345"
+    password = password(16)
     #If errors come due to buffer size, just delete it
     buffer_size = 512*1024
     pyAesCrypt.encryptFile(str(file), str(file) + ".crp", password, buffer_size)
